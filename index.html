@@ -1,10 +1,34 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" style="width:100%; height:100%;"> <!-- Added background color here -->
+<html lang="en" style="width:100%; height:100%;">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <title>Liam O'Driscoll Resume</title>
+  <script type="text/javascript">
+    // Function to show a message after 5 seconds if the iframe hasn't loaded
+    function showMessageIfNotLoaded() {
+      const loadingMessage = document.getElementById('loadingMessage');
+      // Set a timeout to check after 5 seconds
+      setTimeout(() => {
+        // If the iframe has not loaded, display the message
+        if (!window.iframeLoaded) {
+          loadingMessage.style.display = 'block';
+        }
+      }, 5000);
+    }
+
+    // Function to set a flag when the iframe has loaded
+    function iframeLoaded() {
+      window.iframeLoaded = true;
+      document.getElementById('loadingMessage').style.display = 'none';
+    }
+  </script>
 </head>
-<body style="width:100%; height:100%; margin:0;">
-  <iframe src="https://docs.google.com/gview?url=https://github.com/altgrowth-liam/resume/raw/main/resume.pdf&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
+<body style="width:100%; height:100%; margin:0;" onload="showMessageIfNotLoaded();">
+  <div id="loadingMessage" style="display: none; text-align: center;">
+    Refresh the page if my resume takes more than 5s to load.
+  </div>
+  <!-- Added onload event to iframe -->
+  <iframe src="https://docs.google.com/gview?url=https://github.com/altgrowth-liam/resume/raw/main/resume.pdf&embedded=true" 
+          style="width:100%; height:100%;" frameborder="0" onload="iframeLoaded();"></iframe>
 </body>
 </html>
