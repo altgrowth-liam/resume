@@ -3,20 +3,59 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <title>Liam O'Driscoll Resume</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0; /* Light background to contrast with blue text */
+    }
+    #loadingMessage {
+      color: #007bff; /* Nice shade of blue */
+      font-size: 20px;
+      text-align: center;
+      opacity: 1;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.2;
+      }
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      opacity: 0; /* Start with the iframe invisible */
+      transition: opacity 2s ease-in; /* Smooth transition for iframe */
+    }
+  </style>
   <script type="text/javascript">
     function hideMessage() {
-      // Once the iframe is loaded, hide the message
-      document.getElementById('loadingMessage').style.display = 'none';
+      var message = document.getElementById('loadingMessage');
+      var iframe = document.querySelector('iframe');
+      message.style.animation = 'none'; // Stop the pulse animation
+      message.style.opacity = '0'; // Start fading out the message
+      iframe.style.opacity = '1'; // Start fading in the iframe
     }
   </script>
 </head>
-<body style="width:100%; height:100%; margin:0;">
-  <!-- Message is displayed by default -->
-  <div id="loadingMessage" style="text-align: center;">
+<body>
+  <div id="loadingMessage">
     Refresh the page if my resume takes more than 5s to load.
   </div>
-  <!-- The onload event of the iframe will call hideMessage to hide the loading message -->
   <iframe src="https://docs.google.com/gview?url=https://github.com/altgrowth-liam/resume/raw/main/resume.pdf&embedded=true" 
-          style="width:100%; height:100%;" frameborder="0" onload="hideMessage();""></iframe>
+          onload="hideMessage();"></iframe>
 </body>
 </html>
