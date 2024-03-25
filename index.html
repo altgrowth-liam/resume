@@ -13,14 +13,17 @@
       align-items: center;
       justify-content: center;
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0; /* Light background to contrast with blue text */
+      background-color: #f0f0f0;
     }
     #loadingMessage {
-      color: #007bff; /* Nice shade of blue */
+      color: #007bff;
       font-size: 20px;
       text-align: center;
-      opacity: 1;
       animation: pulse 2s infinite;
+      position: fixed; /* Ensure it doesn't affect document flow */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center the div */
     }
     @keyframes pulse {
       0% {
@@ -34,20 +37,22 @@
       }
     }
     iframe {
+      position: absolute; /* Positioning to cover the entire page */
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
-      opacity: 0; /* Start with the iframe invisible */
-      transition: opacity 2s ease-in; /* Smooth transition for iframe */
+      opacity: 0; /* Start with iframe invisible */
+      transition: opacity 2s ease-in;
     }
   </style>
   <script type="text/javascript">
     function hideMessage() {
       var message = document.getElementById('loadingMessage');
       var iframe = document.querySelector('iframe');
-      message.style.animation = 'none'; // Stop the pulse animation
-      message.style.opacity = '0'; // Start fading out the message
-      iframe.style.opacity = '1'; // Start fading in the iframe
+      message.style.display = 'none'; // Completely remove the message from document flow
+      iframe.style.opacity = '1'; // Fade in the iframe
     }
   </script>
 </head>
