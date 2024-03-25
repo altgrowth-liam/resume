@@ -4,31 +4,19 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <title>Liam O'Driscoll Resume</title>
   <script type="text/javascript">
-    // Function to show a message after 5 seconds if the iframe hasn't loaded
-    function showMessageIfNotLoaded() {
-      const loadingMessage = document.getElementById('loadingMessage');
-      // Set a timeout to check after 5 seconds
-      setTimeout(() => {
-        // If the iframe has not loaded, display the message
-        if (!window.iframeLoaded) {
-          loadingMessage.style.display = 'block';
-        }
-      }, 5000);
-    }
-
-    // Function to set a flag when the iframe has loaded
-    function iframeLoaded() {
-      window.iframeLoaded = true;
+    function hideMessage() {
+      // Once the iframe is loaded, hide the message
       document.getElementById('loadingMessage').style.display = 'none';
     }
   </script>
 </head>
-<body style="width:100%; height:100%; margin:0;" onload="showMessageIfNotLoaded();">
-  <div id="loadingMessage" style="display: none; text-align: center;">
+<body style="width:100%; height:100%; margin:0;">
+  <!-- Message is displayed by default -->
+  <div id="loadingMessage" style="text-align: center;">
     Refresh the page if my resume takes more than 5s to load.
   </div>
-  <!-- Added onload event to iframe -->
+  <!-- The onload event of the iframe will call hideMessage to hide the loading message -->
   <iframe src="https://docs.google.com/gview?url=https://github.com/altgrowth-liam/resume/raw/main/resume.pdf&embedded=true" 
-          style="width:100%; height:100%;" frameborder="0" onload="iframeLoaded();"></iframe>
+          style="width:100%; height:100%;" frameborder="0" onload="hideMessage();""></iframe>
 </body>
 </html>
